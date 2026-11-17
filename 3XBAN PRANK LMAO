@@ -1,0 +1,81 @@
+-- fake ban 3x troll, hindi totoong ban lol
+-- 3x mag-pop, pang-asar talaga
+local plr = game.Players.LocalPlayer
+local pg = plr.PlayerGui
+
+pcall(function() pg:FindFirstChild("FakeBan3x"):Destroy() end)
+
+local msgs = {
+ "BRO THIS IS A REAL BAN\nYOU CAN'T PLAY THE GAME AGAIN",
+ "STILL BANNED BRO 😭\nSABI KO NA NGA BA EH",
+ "OK OK JOKE LANG 😭\n3X KA NA NAGPALOKO, GET SOME JOB BRO",
+}
+
+local count = 0
+local function showBan()
+ count = count + 1
+ if count > 3 then return end
+ local gui = Instance.new("ScreenGui")
+ gui.Name = "FakeBan3x"
+ gui.ResetOnSpawn = false
+ gui.DisplayOrder = 9999
+ gui.IgnoreGuiInset = true
+ gui.Parent = pg
+ local bg = Instance.new("Frame")
+ bg.Size = UDim2.new(1, 0, 1, 0)
+ bg.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+ bg.BackgroundTransparency = 0.2
+ bg.Parent = gui
+ local f = Instance.new("Frame")
+ f.Size = UDim2.new(0, 480, 0, 220)
+ f.Position = UDim2.new(0.5, -240, 0.5, -110)
+ f.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+ f.BorderSizePixel = 0
+ f.Parent = gui
+ local c = Instance.new("UICorner") c.CornerRadius = UDim.new(0, 12) c.Parent = f
+ local t1 = Instance.new("TextLabel")
+ t1.Size = UDim2.new(1, -20, 0, 35)
+ t1.Position = UDim2.new(0, 10, 0, 12)
+ t1.BackgroundTransparency = 1
+ t1.Text = "⛔ YOU ARE BANNED (" .. count .. "x)"
+ t1.TextColor3 = Color3.fromRGB(255, 40, 40)
+ t1.Font = Enum.Font.GothamBlack
+ t1.TextSize = 28
+ t1.Parent = f
+ local t2 = Instance.new("TextLabel")
+ t2.Size = UDim2.new(1, -20, 0, 80)
+ t2.Position = UDim2.new(0, 10, 0, 55)
+ t2.BackgroundTransparency = 1
+ t2.Text = msgs[count]
+ t2.TextColor3 = Color3.fromRGB(255, 255, 255)
+ t2.Font = Enum.Font.GothamBold
+ t2.TextSize = 20
+ t2.TextWrapped = true
+ t2.Parent = f
+ local t3 = Instance.new("TextLabel")
+ t3.Size = UDim2.new(1, -20, 0, 20)
+ t3.Position = UDim2.new(0, 10, 0, 135)
+ t3.BackgroundTransparency = 1
+ t3.Text = "just kidding bro, fake lang to"
+ t3.TextColor3 = Color3.fromRGB(170, 170, 170)
+ t3.Font = Enum.Font.Gotham
+ t3.TextSize = 12
+ t3.Parent = f
+ local btn = Instance.new("TextButton")
+ btn.Size = UDim2.new(0, 200, 0, 30)
+ btn.Position = UDim2.new(0.5, -100, 0, 165)
+ btn.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ btn.Text = count < 3 and "OK BRO 😭" or "OK FINE GET SOME JOB 😭"
+ btn.TextColor3 = Color3.fromRGB(0, 0, 0)
+ btn.Font = Enum.Font.GothamBold
+ btn.TextSize = 13
+ btn.Parent = f
+ local c2 = Instance.new("UICorner") c2.CornerRadius = UDim.new(0, 8) c2.Parent = btn
+ btn.MouseButton1Click:Connect(function()
+  gui:Destroy()
+  task.wait(0.5)
+  showBan()
+ end)
+end
+
+showBan()
